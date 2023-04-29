@@ -55,7 +55,7 @@ const note = await Note.create({
     })
 })
  //updating
- app.put('/notes/id:', async (req, res) => {
+ app.put('/notes/:id', async (req, res) => {
     //use url to get the id and assign it to a variable
     const idNote = req.params.id;
     //request body data(title and body) which gets passed into the note below
@@ -67,7 +67,7 @@ const note = await Note.create({
         body: body,
     })
     //find the the updated note in database
-    const note = await Note.findById(idNote)
+    const note = await Note.findByIdAndUpdate(idNote)
     //respond
     res.json({note: note})
  })

@@ -1,7 +1,7 @@
 # crud-mern
 
 # Introduction
-I created a FullStack MERN (MongoDB, Express JS, React, and Node JS) note taking app all while using CRUD (create, read, update, and delete) operations. I actually started off my project with a food ordering app but unfortunately I did not know that the tutorial did not include crud operations so 
+I created a FullStack MERN (MongoDB, Express JS, React, and Node JS) note taking app all while using CRUD (create, read, update, and delete) operations. I actually started off my project with a food ordering app but unfortunately I did not know that the tutorial did not include crud operations so two days into my project I made the wise decision to start over with a new amd more simple project that will meet all of the deliverable requirements to pass y final project for school.
 
 # Technologies USed
 Visual Studio Code
