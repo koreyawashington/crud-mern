@@ -3,8 +3,8 @@ const Note  = require('../models/note')
 const getAllNotes = async (req, res) => {
     //find the notes
     const notes = await Note.find()
-    //respond with notes
-    res.json({notes: notes})
+    //respond with notes and if the variable and the key have the same value then it can be shortened in line 7 from(before) res.json({notes:notes})to(after) res.json({notes})
+    res.json({notes})
 }
 
 const singleNote =  async (req, res) => {
@@ -13,39 +13,35 @@ const singleNote =  async (req, res) => {
     //find not using the id
     const note = await Note.findById(idNote)
     //respond withe note
-    res.json({note: note})
+    res.json({note})
 }
 
 const makeNote = async (req, res) => {
     //get the sent it data off request body
-const title = req.body.title
-const body = req.body.body
+    const {title, body} = req.body
     //create a note by importing note model above and pass the data as an object
 const note = await Note.create({
-    title: title,
-    body: body,
+    title,
+    body,
 })
     //respond with a new note by using variables created
-    res.json({
-        note: note
-    })
+    res.json({note})
 }
 
 const updatedNote =  async (req, res) => {
     //use url to get the id and assign it to a variable
     const idNote = req.params.id;
     //request body data(title and body) which gets passed into the note below
-    const title = req.body.title;
-    const body = req.body.body;
+    const {title, body} = req.body
     //find by id  and update by passing in the id and the data that is getting updated
     await Note.findByIdAndUpdate(idNote, {
-        title: title,
-        body: body
+        title,
+        body,
     })
     //find the the updated note in database
     const note = await Note.findByIdAndUpdate(idNote)
     //respond
-    res.json({note: note})
+    res.json({note})
  }
 
  const deletedNote = async (req, res) => {
@@ -58,9 +54,9 @@ const updatedNote =  async (req, res) => {
  }
 
  module.exports = {
-    getAllNotes: getAllNotes,
-    singleNote: singleNote,
-    makeNote: makeNote,
-    updatedNote: updatedNote,
-    deletedNote: deletedNote
+     getAllNotes,
+    singleNote,
+    makeNote,
+    updatedNote,
+    deletedNote,
  }
