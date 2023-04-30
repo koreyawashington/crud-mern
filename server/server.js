@@ -8,6 +8,7 @@ if(process.env.NODE_ENV != "production") {
 const express = require('express')
 const connectToDb = require("./config/connectToDb")
 const noteController = require('./controllers/noteController') 
+const cors = require('cors')
 
 //Create express app
 const app = express();
@@ -17,6 +18,7 @@ connectToDb()
 
 //configure express app
 app.use(express.json())
+app.use(cors())
 
 //Routing
 //get all of the notes
