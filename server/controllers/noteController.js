@@ -18,10 +18,11 @@ const singleNote =  async (req, res) => {
 
 const makeNote = async (req, res) => {
     //get the sent it data off request body
-    const {title, body} = req.body
+    const {title, subject, body} = req.body
     //create a note by importing note model above and pass the data as an object
 const note = await Note.create({
     title,
+    subject,
     body,
 })
     //respond with a new note by using variables created
@@ -32,10 +33,11 @@ const updatedNote =  async (req, res) => {
     //use url to get the id and assign it to a variable
     const idNote = req.params.id;
     //request body data(title and body) which gets passed into the note below
-    const {title, body} = req.body
+    const {title, subject, body} = req.body
     //find by id  and update by passing in the id and the data that is getting updated
     await Note.findByIdAndUpdate(idNote, {
         title,
+        subject,
         body,
     })
     //find the the updated note in database
