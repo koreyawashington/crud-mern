@@ -31,11 +31,10 @@ function App() {
   //created function to fetch the notes from localhost:3000/notes(my backend server)
   const getNotes = async () => {
     //fetch notes using axios
-    const response = axios.get('http://localhost:3000/notes')
+    const response = await axios.get('http://localhost:3001/notes')
     //set to state
     //console.log the response and view the data to see the notes the noteapp title and body
-    console.log(response);
-    setNoteApp((await response).data.notes)
+    setNoteApp(response.data.notes)
     console.log(response);
   }
 
@@ -56,7 +55,7 @@ function App() {
 //prevent the page from refreshing the page when the submit button is clicked. Now the web application will save a new note without refreshing the entire application allowing the application to be capable of other functions
 event.preventDefault()
 //create a note and send the data object of form as a second argument
-const response = await axios.post("http://localhost:3000/notes", form)
+const response = await axios.post("/notes", form)
 //update state and add it to the app when a new note is created making the title visible
 setNoteApp([...noteapp, response.data.note])
 console.log(response);
@@ -67,15 +66,16 @@ setForm({title: "", subject: "", body:""})
 
   //delete function for deleting notes which is connected to the remove entry button
 //pass the id as an argument  to allow the id to be equal to the note's id that is being deleted
-  const removeNote = async (_id) => {
+  const removeNote = async (id) => {
   //delete note
-  //then we add the id to the end of the localhost:3000/notes to communicate with the backend to delete the note from the front end
-  //the line below can also be written this way === axios.delete("http://localhost:3000/notes" + _id) the difference is using "" and + , it would then be replaced with `` and ${}
-  const response = await axios.delete(`http://localhost:3000/notes/{_id}`)
+  //then we add the id to the end of the localhost:3001/notes to communicate with the backend to delete the note from the front end
+  //the line below can also be written this way === axios.delete("http://localhost:3001/notes" + _id) the difference is using "" and + , it would then be replaced with `` and ${}
+  console.log(id);
+  const response = await axios.delete(`http://localhost:3001/notes/${id}`)
   //update state
   const refreshedNotes = [...noteapp].filter((note) => {
     //this will return the array of notes that are left after the selected note has been deleted
-    return note._id !== _id
+    return note._id !== id
   })
   setNoteApp(refreshedNotes)
   console.log(response);
@@ -103,7 +103,7 @@ const updateNote = async (event) => {
   event.preventDefault()
   const {title,subject,body} = updateF
   //send the update request
-  const response = await axios.put(`http:/localhost:3000/notes/${updateF._id}`, {title,subject,body})
+  const response = await axios.put(`/notes/${updateF._id}`, {title,subject,body})
   //update state
   const newNotes = [...noteapp]
   const noteIndex = noteapp.findIndex(note => {

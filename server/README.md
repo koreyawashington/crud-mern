@@ -19,6 +19,7 @@ Heroku
 Postman
 Youtube
 Figma
+App Diagram
 
 # Getting started
 # Youtube Tutorial
@@ -34,6 +35,8 @@ https://trello.com/b/8hjyU7FG/mernstack-crud-app
 https://www.postman.com/koreya123123/workspace/notes-crud-mern/overview
 # Figma
 https://www.figma.com/file/XYkxcBYAKaKoDU8gsIW23A/Notes-App-Wireframe?type=whiteboard&node-id=0%3A1&t=9JQxNZIPwBO8NRTz-1
+# App.diagram
+https://app.diagrams.net/#Hkoreyawashington%2Fcrud-mern%2Fmain%2FUntitled%20Diagram.drawio
 
 # Unsolved Problems
 

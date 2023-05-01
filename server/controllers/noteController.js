@@ -49,6 +49,7 @@ const updatedNote =  async (req, res) => {
  const deletedNote = async (req, res) => {
     //get id
     const idNote = req.params.id
+    console.log(idNote);
     //delete by finding it by id from idNote from url
     await Note.deleteOne({_id: idNote})
     //respond with deletion message
