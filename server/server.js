@@ -1,15 +1,17 @@
 //load .env file variables
-if(process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV != "production") {
     require("dotenv").config()
 }
 
 
 //Import dependencies
+const cors = require('cors')
 const express = require('express')
 const connectToDb = require("./config/connectToDb")
-const noteController = require('./controllers/noteController') 
+const noteController = require('./controllers/noteController')
 const userController = require('./controllers/userController')
-const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const requireAuth = require('./middleware/requireAuth')
 
 //Create express app
 const app = express();
@@ -18,21 +20,25 @@ const app = express();
 connectToDb()
 
 //configure express app
-app.use(express.json())
-app.use(cors())
+app.use(express.json({extend: false}))
+app.use(cors({
+    origin:true,
+    credentials: true
+}))
+app.use(cookieParser)
 
 //=============================Routing
 
-//===========authetication routes
+//===========authentication routes
 app.post('/signup', userController.signup)
-app.post('/login', userController.login)
+app.get('/login', userController.login)
 app.get('/logout', userController.logout)
-
+app.get('/check-authorization', requireAuth, userController.checkAuth)
 //===========note/crud routes
 //get all of the notes
-app.get('/notes', noteController.getAllNotes )
+app.get('/notes', noteController.getAllNotes)
 //get a single note
-app.get('/notes/:id', noteController.singleNote)
+app.post('/notes/:id', noteController.singleNote)
 //create a note
 app.post('/notes', noteController.makeNote)
 //updating
