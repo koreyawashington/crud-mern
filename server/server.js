@@ -8,6 +8,7 @@ if(process.env.NODE_ENV != "production") {
 const express = require('express')
 const connectToDb = require("./config/connectToDb")
 const noteController = require('./controllers/noteController') 
+const userController = require('./controllers/userController')
 const cors = require('cors')
 
 //Create express app
@@ -20,7 +21,14 @@ connectToDb()
 app.use(express.json())
 app.use(cors())
 
-//Routing
+//=============================Routing
+
+//===========authetication routes
+app.post('/signup', userController.signup)
+app.post('/login', userController.login)
+app.get('/logout', userController.logout)
+
+//===========note/crud routes
 //get all of the notes
 app.get('/notes', noteController.getAllNotes )
 //get a single note
