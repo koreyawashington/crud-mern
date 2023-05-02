@@ -2,7 +2,7 @@ import noteStore from "../store/noteStore"
 import Note from "./Note"
 
 export default function Notes() {
-    const store = noteStore
+    const store = noteStore()
     return(
         <div>
         <h2>NOTES:</h2>
