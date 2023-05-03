@@ -1,3 +1,4 @@
+
 //load .env file variables
 if (process.env.NODE_ENV != "production") {
     require("dotenv").config()
@@ -6,6 +7,7 @@ if (process.env.NODE_ENV != "production") {
 
 //Import dependencies
 const cors = require('cors')
+const morgan = require('morgan')
 const express = require('express')
 const connectToDb = require("./config/connectToDb")
 const noteController = require('./controllers/noteController')
@@ -20,7 +22,8 @@ const app = express();
 connectToDb()
 
 //configure express app
-app.use(express.json({extend: false}))
+app.use(express.json())
+app.use(morgan())
 app.use(cors({
     origin:true,
     credentials: true
@@ -36,15 +39,15 @@ app.get('/logout', userController.logout)
 app.get('/check-authorization', requireAuth, userController.checkAuth)
 //===========note/crud routes
 //get all of the notes
-app.get('/notes', noteController.getAllNotes)
+app.get('/notes', requireAuth, noteController.getAllNotes)
 //get a single note
-app.post('/notes/:id', noteController.singleNote)
+app.post('/notes/:id', requireAuth,noteController.singleNote)
 //create a note
-app.post('/notes', noteController.makeNote)
+app.post('/notes',requireAuth, noteController.makeNote)
 //updating
-app.put('/notes/:id', noteController.updatedNote)
+app.put('/notes/:id',requireAuth, noteController.updatedNote)
 //delete
-app.delete('/notes/:id', noteController.deletedNote)
+app.delete('/notes/:id',requireAuth, noteController.deletedNote)
 
 //Start server
 app.listen(process.env.PORT)

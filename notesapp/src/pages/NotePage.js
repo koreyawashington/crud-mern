@@ -14,7 +14,7 @@ export default function NotePage  ()  {
        //inspect the console in the REACT App to confirm that 
        store.getNotes()
        //leaving the square bracket empty will ensure the function runs once when the application is opened in the url 
-     }, [store])
+     }, [])
   return (
     <div>
     <Notes />
