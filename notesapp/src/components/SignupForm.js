@@ -14,14 +14,17 @@ const navigate = useNavigate()
             <form onSubmit={handleSignup}>
                 <input 
                 onChange={store.updateSignupForm} 
-                value={store.signupForm.email} 
+                // value={store.signupForm.email} 
                 type="email" 
-                name="email" />
+                name="email"
+                placeholder="Type your Email here"  />
                 <input 
                 onChange={store.updateSignupForm} 
-                value={store.signupForm.password}
+                // value={store.signupForm.password}
                 type="password" 
-                name="password" />
+                name="password"
+                placeholder="Type your Password here"  
+                />
                 <button type="submit">Signup</button>
             </form>
             </div>

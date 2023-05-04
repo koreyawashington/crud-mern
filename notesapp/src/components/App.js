@@ -4,8 +4,7 @@ import {BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import RequireAuth from "./RequireAuth";
 import SignupPage from "../pages/SignupPage";
 import LogoutPage from "../pages/LogoutPage";
-
-
+import './App.css'
 function App() {
  
    

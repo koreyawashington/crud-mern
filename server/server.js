@@ -7,7 +7,7 @@ if (process.env.NODE_ENV != "production") {
 
 //Import dependencies
 const cors = require('cors')
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const express = require('express')
 const connectToDb = require("./config/connectToDb")
 const noteController = require('./controllers/noteController')
@@ -18,12 +18,13 @@ const requireAuth = require('./middleware/requireAuth')
 //Create express app
 const app = express();
 
+
 //Connect to database
 connectToDb()
 
 //configure express app
 app.use(express.json())
-app.use(morgan())
+// app.use(morgan())
 app.use(cors({
     origin:true,
     credentials: true

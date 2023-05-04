@@ -17,12 +17,14 @@ navigate("/")
                 onChange={store.updateLoginForm} 
                 value={store.loginForm.email} 
                 type="email" 
-                name="email" />
+                name="email"
+                placeholder="Type your Email here" />
                 <input 
                 onChange={store.updateLoginForm} 
                 value={store.loginForm.password}
                 type="password" 
-                name="password" />
+                name="password" 
+                placeholder="Type your Password here" />
                 <button type="submit">Login</button>
             </form>
             </div>

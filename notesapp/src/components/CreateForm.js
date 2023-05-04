@@ -12,7 +12,7 @@ if(store.updateF._id ) return <></>
         <form onSubmit={store.creatingNote}>
           <input onChange={store.updateformfield} value={store.form.title} name = 'title' placeholder="Create a Title"/>
           <input onChange={store.updateformfield} value={store.form.subject} name = 'subject'placeholder="Create a Subject"/>
-          <textarea onChange={store.updateformfield}value={store.form.body} name = 'body'placeholder="Create a new note entry here..."/>
+          <textarea onChange={store.updateformfield}value={store.form.body} name = 'body' placeholder="Create a new note entry here..."/>
           <button type = 'submit'>Save Entry</button>
         </form>
        </div>
